@@ -61,5 +61,5 @@ A more **practical and simplified** model compared to OSI, used in real-world ne
 |--------|--------------------------|--------------|--------------------|
 | **4** | Application (Layers 5–7) | Handles application-level interactions like web browsing, file transfers, etc. | **HTTP**, **DNS**, **FTP**, **SMTP** |
 | **3** | Transport (Layer 4) | Provides reliable or unreliable delivery between devices. | **TCP**, **UDP** |
-| **2** | Internet (Layer 3) | Defines addressing, routing, and packet delivery across networks. | **IP**, **ICMP**, **ARP** |
-| **1** | Network Access (Layers 1–2) | Manages how data is physically sent over the medium. | **Ethernet**, **Wi-Fi**, **PPP** |
+| **2** | Internet (Layer 3) | Defines addressing, routing, and packet delivery across networks. | **IP** |
+| **1** | Network Access (Layers 1–2) | Manages how data is physically sent over the medium. | **Ethernet**, **Wi-Fi** |
