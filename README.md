@@ -29,7 +29,7 @@ A conceptual model with **7 layers**, where each layer defines a specific functi
 
 ### 🔢 The 7 Layers of OSI
 
-| Layer | Name | Description | Example Protocols / Concepts |
+| Layer | Name | Description | Protocols |
 |--------|------|--------------|-------------------------------|
 | **7** | **Application** | Interfaces with the end user; defines how apps interact with the network. | **HTTP**, **FTP**, **gRPC**, **SMTP** |
 | **6** | **Presentation** | Handles **encoding**, **encryption**, and **serialization**. | **SSL/TLS**, **JSON**, **XML**, **Base64** |
@@ -45,9 +45,9 @@ A conceptual model with **7 layers**, where each layer defines a specific functi
 
 ![WhatsApp Image 2025-10-11 at 1 11 22 PM](https://github.com/user-attachments/assets/c47c4e19-918d-49e9-87db-2daf39520651)
 ![WhatsApp Image 2025-10-11 at 1 11 22 PM (1)](https://github.com/user-attachments/assets/7475f8f4-d22d-4686-a7e1-b94263aa7293)
-![WhatsApp Image 2025-10-11 at 1 11 23 PM (2)](https://github.com/user-attachments/assets/89e6c12f-d831-4400-869a-c0fc3eda08e4)
-![WhatsApp Image 2025-10-11 at 1 11 23 PM (1)](https://github.com/user-attachments/assets/1d3c7f42-dc2d-4008-9cc8-a914cfe9fc73)
 ![WhatsApp Image 2025-10-11 at 1 11 23 PM](https://github.com/user-attachments/assets/58bf296b-1454-4282-81dd-54571713558f)
+![WhatsApp Image 2025-10-11 at 1 11 23 PM (1)](https://github.com/user-attachments/assets/1d3c7f42-dc2d-4008-9cc8-a914cfe9fc73)
+![WhatsApp Image 2025-10-11 at 1 11 23 PM (2)](https://github.com/user-attachments/assets/89e6c12f-d831-4400-869a-c0fc3eda08e4)
 
 ---
 
@@ -57,7 +57,7 @@ A more **practical and simplified** model compared to OSI, used in real-world ne
 
 ### 🧱 Layers of TCP/IP Model
 
-| Layer | Corresponding OSI Layers | Description | Example Protocols |
+| Layer | Corresponding OSI Layers | Description | Protocols |
 |--------|--------------------------|--------------|--------------------|
 | **4** | Application (Layers 5–7) | Handles application-level interactions like web browsing, file transfers, etc. | **HTTP**, **DNS**, **FTP**, **SMTP** |
 | **3** | Transport (Layer 4) | Provides reliable or unreliable delivery between devices. | **TCP**, **UDP** |
