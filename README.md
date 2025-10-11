@@ -43,11 +43,12 @@ A conceptual model with **7 layers**, where each layer defines a specific functi
 
 ### 🧭 Flow of Data in OSI Model
 
-![WhatsApp Image 2025-10-11 at 1 11 22 PM](https://github.com/user-attachments/assets/c47c4e19-918d-49e9-87db-2daf39520651)
-![WhatsApp Image 2025-10-11 at 1 11 22 PM (1)](https://github.com/user-attachments/assets/7475f8f4-d22d-4686-a7e1-b94263aa7293)
-![WhatsApp Image 2025-10-11 at 1 11 23 PM](https://github.com/user-attachments/assets/58bf296b-1454-4282-81dd-54571713558f)
-![WhatsApp Image 2025-10-11 at 1 11 23 PM (1)](https://github.com/user-attachments/assets/1d3c7f42-dc2d-4008-9cc8-a914cfe9fc73)
-![WhatsApp Image 2025-10-11 at 1 11 23 PM (2)](https://github.com/user-attachments/assets/89e6c12f-d831-4400-869a-c0fc3eda08e4)
+![WhatsApp Image 2025-10-11 at 1 23 16 PM (1)](https://github.com/user-attachments/assets/b74b6ea2-ca1d-4f73-92ac-db15af70f749)
+![WhatsApp Image 2025-10-11 at 1 23 16 PM](https://github.com/user-attachments/assets/d9edc136-5353-432e-9e33-d9f4f1939e9e)
+![WhatsApp Image 2025-10-11 at 1 23 17 PM (1)](https://github.com/user-attachments/assets/e81c280f-d27d-4980-9a60-354d6fd97333)
+![WhatsApp Image 2025-10-11 at 1 23 17 PM](https://github.com/user-attachments/assets/b5809436-94a0-43a0-8c39-38f9cd9ef512)
+![WhatsApp Image 2025-10-11 at 1 23 15 PM](https://github.com/user-attachments/assets/723ade8e-f411-472b-8a82-7c97fcdc89d8)
+
 
 ---
 
