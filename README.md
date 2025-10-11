@@ -67,3 +67,39 @@ A more **practical and simplified** model compared to OSI, used in real-world ne
 | **3** | Transport (Layer 4) | Provides reliable or unreliable delivery between devices. | **TCP**, **UDP** |
 | **2** | Internet (Layer 3) | Defines addressing, routing, and packet delivery across networks. | **IP** |
 | **1** | Network Access (Layers 1–2) | Manages how data is physically sent over the medium. | **Ethernet**, **Wi-Fi** |
+
+---
+
+# Host-to-Host Communication (Layer 2-3 Concepts)
+
+## 1. Message Sending Overview
+- When Host A sends a message to Host B, it usually involves a request for Host B to perform some action (e.g., RPC).
+- Each host's network interface card (NIC) has a **unique MAC address**.
+- Host A specifies the **destination MAC address** to send the message.
+
+## 2. MAC Addressing and Network Broadcast
+- At Layer 2 (Data Link Layer), all devices on the same network **receive the message** because it's broadcast.
+- Only the host with the matching MAC address **accepts and processes** the message.
+- This typically happens in a **private network** or LAN environment.
+
+## 3. Scalability Issues in Large Networks
+- In networks with **millions of machines**, broadcasting messages to all hosts is inefficient.
+- We need an addressing method to **eliminate unnecessary broadcast**.
+
+## 4. IP Addressing (Layer 3) for Efficient Routing
+- The **IP address** consists of two parts:
+  - **Network portion:** Identifies the specific network or subnet.
+  - **Host portion:** Identifies the host within that network.
+- Routers use the network portion to **route packets only to the correct subnet**, reducing network traffic.
+- The host portion is used to deliver the packet within the subnet.
+- Even with IP addressing, **MAC addresses are still needed** at Layer 2 for final delivery.
+
+## 5. Ports for Application-level Addressing
+- A single host runs **multiple applications** simultaneously, each requiring its own communication channel.
+- IP addresses identify the host, but **ports identify the specific application/service**.
+- Example:
+  - HTTP request on port 8080.
+  - DNS request on port 53.
+- Ports allow the same host to **handle multiple types of requests independently**.
+
+---
