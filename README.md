@@ -70,7 +70,7 @@ A more **practical and simplified** model compared to OSI, used in real-world ne
 
 ---
 
-# Host-to-Host Communication (Layer 2-3 Concepts)
+# 🖥️ Host-to-Host Communication (Layer 2-3 Concepts)
 
 ## 1. Message Sending Overview
 - When Host A sends a message to Host B, it usually involves a request for Host B to perform some action (e.g., RPC).
