@@ -43,9 +43,49 @@ A conceptual model with **7 layers**, where each layer defines a specific functi
 
 ### 🧭 Flow of Data in OSI Model
 
-![WhatsApp Image 2025-10-11 at 1 23 15 PM](https://github.com/user-attachments/assets/723ade8e-f411-472b-8a82-7c97fcdc89d8)
 
-![WhatsApp Image 2025-10-11 at 1 23 17 PM](https://github.com/user-attachments/assets/b5809436-94a0-43a0-8c39-38f9cd9ef512)
+## The OSI Layers - an Example (Sender)
+
+- Example sending a POST request to an HTTPS webpage
+- Layer 7 - **Application**
+  - POST request with JSON data to HTTPS server
+- Layer 6 - **Presentation**
+  - Serialize JSON to flat byte strings
+- Layer 5 - **Session**
+  - Request to establish TCP connection/TLS
+- Layer 4 - **Transport**
+  - Sends SYN request target port 443
+- Layer 3 - **Network**
+  - SYN is placed an IP packet(s) and adds the source/dest IPs
+- Layer 2 - **Data link**
+  - Each packet goes into a single frame and adds the source/dest MAC addresses
+- Layer 1 - **Physical**
+  - Each frame becomes a string of bits which converted into either a radio signal (wifi), electric signal (ethernet), or light (fiber)
+
+---
+
+## The OSI Layers - an Example (Receiver)
+
+- Receiver computer receives the POST request the other way around
+- Layer 1 - **Physical**
+  - Radio, electic or light is received and converted into digital bits
+- Layer 2 - **Data link**
+  - The bits from Layer 1 is assembled into frames
+- Layer 3 - **Network**
+  - The frames from Layer 2 are assembled into IP packets
+- Layer 4 - **Transport**
+  - The IP packets from Layer 3 are assembled into TCP segments
+  - Deals with Congestion control/flow control/retransmission in case of TCP
+  - If segment is SYN we don't need to go further into more layers as we are still processing the connection request
+- Layer 5 - **Session**
+  - The connection session is established or identified
+  - We only arrive at this layer when necessary (three way handshake is done)
+- Layer 6 - **Presentation**
+  - Deserialize flat byte strings back to JSON for the app to continue
+- Layer 7 - **Application**
+  - Application understands the JSON POST request and your express or rails request receive event is triggered
+
+---
 
 ![WhatsApp Image 2025-10-11 at 1 23 17 PM (1)](https://github.com/user-attachments/assets/e81c280f-d27d-4980-9a60-354d6fd97333)
 
