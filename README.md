@@ -44,7 +44,7 @@ A conceptual model with **7 layers**, where each layer defines a specific functi
 ### 🧭 Flow of Data in OSI Model
 
 
-## The OSI Layers - an Example (Sender)
+#### The OSI Layers - an Example (Sender)
 
 - Example sending a POST request to an HTTPS webpage
 - Layer 7 - **Application**
@@ -64,7 +64,7 @@ A conceptual model with **7 layers**, where each layer defines a specific functi
 
 ---
 
-## The OSI Layers - an Example (Receiver)
+#### The OSI Layers - an Example (Receiver)
 
 - Receiver computer receives the POST request the other way around
 - Layer 1 - **Physical**
