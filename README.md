@@ -143,3 +143,159 @@ A more **practical and simplified** model compared to OSI, used in real-world ne
 - Ports allow the same host to **handle multiple types of requests independently**.
 
 ---
+
+# 🌐 Internet Protocol (IP)
+
+## 🧩 IP Building Blocks
+
+### 1. IP Address
+- A **Layer 3** (Network Layer) property.
+- Can be assigned:
+  - **Statically** (manually configured)
+  - **Dynamically** (via DHCP)
+- Consists of:
+  - **Network portion**
+  - **Host portion**
+- In **IPv4**, it is **32 bits (4 bytes)**.
+- Example: `192.168.10.25`
+
+---
+
+### 2. Network vs Host Portion
+- Represented as: `a.b.c.d/x`
+  - `a.b.c.d` → IP address (in decimal)
+  - `/x` → number of **network bits**
+- The remaining bits (32 - x) represent the **host portion**.
+
+#### 🧮 Example
+`192.168.254.0/24`
+- `/24` → 24 bits for **network**, 8 bits for **host**
+- This means:
+  - Network part → `192.168.254`
+  - Host part → last octet (0–255)
+  - **Usable hosts:** 2⁸ - 2 = **254**
+
+> ⚠️ Note: We subtract 2 because one address is reserved for the *network address* and one for the *broadcast address*.
+
+---
+
+### 3. Subnet
+A **subnet (sub-network)** is a smaller network within a larger one.  
+Defined using **CIDR notation** (`/x`) or **subnet mask**.
+
+#### Example
+- `192.168.254.0/24`
+- Equivalent subnet mask: `255.255.255.0`
+- All IPs from `192.168.254.1` to `192.168.254.254` belong to the same subnet.
+
+---
+
+### 4. Subnet Mask
+- Used to **determine which part of an IP address is the network portion** and which is the host portion.
+- Written as:
+  - Dotted decimal: `255.255.255.0`
+  - Binary: `11111111.11111111.11111111.00000000`
+- Example mapping:
+  - `192.168.10.5/24` → Mask = `255.255.255.0`
+
+---
+
+### 5. CIDR Notation (`/x`)
+- The `/x` **always specifies how many bits are for the network portion**.
+- Remaining bits are for hosts.
+
+#### Examples:
+| CIDR | Network Bits | Host Bits | Usable Hosts | Subnet Mask |
+|------|---------------|------------|---------------|--------------|
+| `/8` | 8 | 24 | 16,777,214 | 255.0.0.0 |
+| `/16` | 16 | 16 | 65,534 | 255.255.0.0 |
+| `/24` | 24 | 8 | 254 | 255.255.255.0 |
+| `/26` | 26 | 6 | 62 | 255.255.255.192 |
+
+---
+
+### 6. Determining If Two Devices Are on the Same Network
+
+To check if two IPs are in the same network:
+
+#### Step-by-step:
+- Convert both IPs and subnet mask to **binary**.
+- Perform **bitwise AND** (IP AND subnet mask).
+- If the **results match**, both are in the same network.
+
+#### Example:
+| Device | IP | Subnet Mask | Network Address |
+|---------|----|-------------|----------------|
+| A | 192.168.10.5 | 255.255.255.0 | 192.168.10.0 |
+| B | 192.168.10.200 | 255.255.255.0 | 192.168.10.0 |
+
+✅ Same network → communicate directly.
+
+| Device | IP | Subnet Mask | Network Address |
+|---------|----|-------------|----------------|
+| A | 192.168.10.5 | 255.255.255.0 | 192.168.10.0 |
+| B | 192.168.11.5 | 255.255.255.0 | 192.168.11.0 |
+
+❌ Different networks → communication must go through a **router (gateway)**.
+
+---
+
+### 7. Default Gateway
+- The **gateway** (often a router) connects a local network to other networks.
+- Each host in a subnet must know its **default gateway IP**.
+- Communication logic:
+  - If destination is in the same subnet → send directly.
+  - If destination is outside the subnet → send to **gateway**.
+
+---
+
+### 8. Who Provides the Subnet Mask?
+- In most setups, **the router provides it via DHCP**.
+- DHCP automatically assigns:
+  - IP address  
+  - Subnet mask  
+  - Default gateway  
+  - DNS servers
+
+---
+
+# 🧾 IP Packet, ICMP & ARP
+
+## IP Packet (IPv4)
+- IP packet = **Header** + **Data**.
+- **Header**
+  - Minimum size: **20 bytes**.
+  - Maximum size: **60 bytes** (when options are present).
+  - Important header fields:
+    - **TTL (Time To Live)** — decremented by each router; when TTL = 0 packet is discarded.
+    - **Protocol** — indicates next-level protocol (e.g., 1 = ICMP, 6 = TCP, 17 = UDP).
+    - **Source IP**, **Destination IP**
+    - **Options** (if any; make header > 20 bytes)
+    - **ECN** (Explicit Congestion Notification) — used for congestion signalling (requires endpoint & network support).
+- **Data**
+  - Maximum payload size = `65,535 − header_length`.
+  - For common 20-byte header, payload max = **65,515 bytes**.
+
+---
+
+## ICMP (Internet Control Message Protocol)
+- **Layer:** Operates with IP at Layer 3.
+- **Purpose:** Provide network-layer diagnostic and control messages (e.g., Destination Unreachable, Echo Request/Reply).
+- **Common uses:**
+  - **ping**: uses **ICMP Echo Request** and **Echo Reply** to test reachability/latency.
+- **Firewall behavior:** ICMP is often filtered/blocked or rate-limited for security reasons. If ICMP is blocked, `ping` may fail even if host is reachable.
+- **No ports:** ICMP messages do not use TCP/UDP ports — they are encapsulated directly in IP.
+
+---
+
+## ARP (Address Resolution Protocol)
+- **Purpose:** Resolve **IPv4 address → MAC address** on the local network so L2 frames can be addressed properly.
+- **Basic flow (conceptual):**
+  - Host A needs MAC for IP X.
+  - Host A broadcasts an ARP Request: "Who has IP X? Tell MAC_A".
+  - Host with IP X replies with an ARP Reply containing its MAC (unicast).
+  - Host A updates its **ARP table** with the IP↔MAC mapping.
+- **ARP cache:** Operating systems store mappings for a limited time to avoid repeated broadcasts.
+- **Why important:** Ethernet frames require destination MAC addresses; IP addresses alone are insufficient for Layer 2 delivery.
+
+---
