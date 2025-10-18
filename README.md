@@ -301,13 +301,91 @@ To check if two IPs are in the same network:
 ---
 
 ## The Journey of an IP Packet
-![WhatsApp Image 2025-10-18 at 5 25 09 PM (1)](https://github.com/user-attachments/assets/9e940842-07fd-498e-90fc-2f6b2cb8323e)
+![WhatsApp Image 2025-10-18 at 5 38 38 PM](https://github.com/user-attachments/assets/efd36a28-3f70-45d5-bd05-1da3dfaad65b)
 
-- Example 1: Host A -> Host B
-- Both A (10.0.0.2) and B (10.0.0.4) belong to the same subnet (10.0.0.0/24).
-- Steps:
-    1. A checks destination subnet
-    2.  
+## 🖥️ Case 1: Host A → Host B (Same Subnet)
+
+### 1️⃣ Subnet Check
+- A: 10.0.0.2  
+- B: 10.0.0.4  
+Both are in `10.0.0.0/24` → same subnet ✅  
+No router needed.
+
+### 2️⃣ ARP Resolution
+- A checks ARP cache for 10.0.0.4.
+- If not found, sends ARP **broadcast**:  
+  “Who has 10.0.0.4? Tell 10.0.0.2.”
+- Switch **floods** the ARP request to all ports.
+
+### 3️⃣ Response
+- B replies with **unicast ARP reply** to A containing its MAC.
+
+### 4️⃣ Communication
+- A updates ARP table (10.0.0.4 → MAC_B).
+- A sends Ethernet frames **directly to B’s MAC**.
+- Switch forwards frames only to B’s port.
+
+---
+
+## 🌐 Case 2: Host D → Host X (Different Subnets)
+
+### 1️⃣ Subnet Check
+- D: 10.0.0.3 (10.0.0.0/24)
+- X: 192.168.1.2 (192.168.1.0/24)
+→ Different subnets ❌  
+Packet must go to **default gateway (10.0.0.100)**.
+
+### 2️⃣ ARP Resolution (D → Router)
+- D checks ARP cache for 10.0.0.100.
+- If not found → sends ARP **broadcast**.
+- Router replies with its **MAC**.
+
+### 3️⃣ Sending Packet to Router
+- D sends Ethernet frame:
+  - **Dest MAC:** Router’s MAC  
+  - **Dest IP:** 192.168.1.2 (unchanged)
+
+### 4️⃣ Router Processing
+- Router receives packet → checks routing table.
+- Sees 192.168.1.2 is on directly connected network 192.168.1.0/24.
+
+### 5️⃣ ARP Resolution (Router → X)
+- If Router doesn’t know X’s MAC → sends ARP broadcast on that interface.
+- X replies with its MAC → Router caches it.
+
+### 6️⃣ Delivery
+- Router forwards packet to X directly via unicast.
+
+---
+
+## ☁️ Case 3: Host B → Host G (Internet)
+
+### 1️⃣ Subnet Check
+- B: 10.0.0.4  
+- G: 8.8.8.8  
+→ Different networks ❌  
+B must send to default gateway (Router 10.0.0.100).
+
+### 2️⃣ ARP Resolution (B → Router)
+- B checks for 10.0.0.100 in ARP cache.
+- If not present → sends ARP **broadcast**.
+- Router replies with its **MAC address**.
+
+### 3️⃣ Packet Forwarding to Router
+- B sends frame to Router’s MAC with IP dest = 8.8.8.8.
+
+### 4️⃣ Router’s Role
+- Router checks routing table.
+- Forwards to Internet interface (Router’s public IP: 1.2.3.4).
+- May perform **NAT** (translating 10.0.0.4 → 1.2.3.4).
+
+### 5️⃣ Internet Communication
+- Router sends packet to ISP gateway.
+- From there, packet travels through the Internet to 8.8.8.8.
+
+### 6️⃣ Response
+- Response returns to Router’s public IP.
+- Router translates (via NAT) and forwards back to Host B.
 
 ---
 
