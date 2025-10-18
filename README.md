@@ -299,3 +299,45 @@ To check if two IPs are in the same network:
 - **Why important:** Ethernet frames require destination MAC addresses; IP addresses alone are insufficient for Layer 2 delivery.
 
 ---
+
+# 🧩 UDP (User Datagram Protocol)
+
+## 🔹 What is UDP?
+- Layer 4 protocol  
+- Addresses **processes** in a host using **ports**  
+- Simple protocol for sending and receiving data  
+- **No prior communication required** before transmission  
+- **Stateless:** the host stores no connection information 
+
+---
+
+## 🔹 Multiplexing & Demultiplexing
+- IP addresses only identify **target hosts**, not specific applications  
+- A host may run **many applications**, each needing its own data 
+- **Ports** are used to identify individual apps or processes  
+- Sender side (multiplexes): 
+  - Multiple applications on the same **IP address/Host** want to send data
+  - UDP wraps each application’s data into its own datagram with a source and destination port
+  - Each datagram is sent as a separate **IP packet** over the network    
+- Receiver side (demultiplexes):
+  - The host receives incoming IP packets containing UDP datagrams  
+  - UDP extracts each datagram and delivers it to the **correct application** based on **destination port**
+
+---
+
+## 🔹 UDP Datagram Structure
+- UDP Datagram = **Header + Data**
+- UDP Header: 
+  - Size: **8 bytes** (for IPv4)   
+  - Port numbers: **16 bits each** → range **0 to 65,535**  
+- The datagram is encapsulated as **data** inside an IP packet 
+
+---
+
+## 🔹 Limitations
+- No acknowledgment (no ACKs)
+- No guarantee of delivery  
+- Connection-less - any host can send data without setup  
+- Security risk - packets can be easily **spoofed**
+
+---
