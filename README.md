@@ -87,11 +87,11 @@ A conceptual model with **7 layers**, where each layer defines a specific functi
 
 ---
 
-![WhatsApp Image 2025-10-11 at 1 23 17 PM (1)](https://github.com/user-attachments/assets/e81c280f-d27d-4980-9a60-354d6fd97333)
+![WhatsApp Image 2025-10-18 at 5 25 08 PM](https://github.com/user-attachments/assets/7cdeb9d3-70e0-4530-ae31-6841e4d54f4a)
 
-![WhatsApp Image 2025-10-11 at 1 23 16 PM](https://github.com/user-attachments/assets/d9edc136-5353-432e-9e33-d9f4f1939e9e)
+![WhatsApp Image 2025-10-18 at 5 25 09 PM](https://github.com/user-attachments/assets/4529581a-e45e-4339-a951-609889925990)
 
-![WhatsApp Image 2025-10-11 at 1 23 16 PM (1)](https://github.com/user-attachments/assets/b74b6ea2-ca1d-4f73-92ac-db15af70f749)
+![WhatsApp Image 2025-10-18 at 5 25 09 PM (1)](https://github.com/user-attachments/assets/8b1841f4-a71d-4040-9601-aaf2caefdb94)
 
 ---
 
