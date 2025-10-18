@@ -300,6 +300,17 @@ To check if two IPs are in the same network:
 
 ---
 
+## The Journey of an IP Packet
+![WhatsApp Image 2025-10-18 at 5 25 09 PM (1)](https://github.com/user-attachments/assets/9e940842-07fd-498e-90fc-2f6b2cb8323e)
+
+- Example 1: Host A -> Host B
+- Both A (10.0.0.2) and B (10.0.0.4) belong to the same subnet (10.0.0.0/24).
+- Steps:
+    1. A checks destination subnet
+    2.  
+
+---
+
 # 🧩 UDP (User Datagram Protocol)
 
 ## 🔹 What is UDP?
