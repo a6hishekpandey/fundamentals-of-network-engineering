@@ -1,6 +1,6 @@
-# 📘 Fundamentals of Network Engineering
+# Fundamentals of Network Engineering
 
-## 🌐 Basic Network Properties
+## Basic Network Properties
 
 | Property | Description |
 |-----------|--------------|
@@ -10,11 +10,11 @@
 
 ---
 
-## 🧩 Why Do We Need a Communication Model?
+## Why Do We Need a Communication Model?
 
 A **communication model** provides a **standardized structure** for building and understanding network systems.
 
-### 🔍 Key Reason:
+### Key Reason:
 To build **network-agnostic applications** — i.e., applications that can work seamlessly over **Wi-Fi**, **Ethernet**, **LTE**, or **Fiber**, **without needing separate implementations**.
 
 > Example:  
@@ -23,11 +23,11 @@ To build **network-agnostic applications** — i.e., applications that can work 
 
 ---
 
-## 🏗️ OSI Model (Open Systems Interconnection)
+## OSI Model (Open Systems Interconnection)
 
 A conceptual model with **7 layers**, where each layer defines a specific function in the data communication process.
 
-### 🔢 The 7 Layers of OSI
+### The 7 Layers of OSI
 
 | Layer | Name | Description | Protocols |
 |--------|------|--------------|-------------------------------|
@@ -41,8 +41,7 @@ A conceptual model with **7 layers**, where each layer defines a specific functi
 
 ---
 
-### 🧭 Flow of Data in OSI Model
-
+### Flow of Data in OSI Model
 
 #### The OSI Layers - an Example (Sender)
 
@@ -95,11 +94,11 @@ A conceptual model with **7 layers**, where each layer defines a specific functi
 
 ---
 
-## 🌍 TCP/IP Model
+## TCP/IP Model
 
 A more **practical and simplified** model compared to OSI, used in real-world networking (including the Internet).
 
-### 🧱 Layers of TCP/IP Model
+### Layers of TCP/IP Model
 
 | Layer | Corresponding OSI Layers | Description | Protocols |
 |--------|--------------------------|--------------|--------------------|
@@ -110,7 +109,7 @@ A more **practical and simplified** model compared to OSI, used in real-world ne
 
 ---
 
-# 🖥️ Host-to-Host Communication (Layer 2-3 Concepts)
+# Host-to-Host Communication (Layer 2-3 Concepts)
 
 ## 1. Message Sending Overview
 - When Host A sends a message to Host B, it usually involves a request for Host B to perform some action (e.g., RPC).
@@ -144,9 +143,9 @@ A more **practical and simplified** model compared to OSI, used in real-world ne
 
 ---
 
-# 🌐 Internet Protocol (IP)
+# Internet Protocol (IP)
 
-## 🧩 IP Building Blocks
+## IP Building Blocks
 
 ### 1. IP Address
 - A **Layer 3** (Network Layer) property.
@@ -167,7 +166,7 @@ A more **practical and simplified** model compared to OSI, used in real-world ne
   - `/x` → number of **network bits**
 - The remaining bits (32 - x) represent the **host portion**.
 
-#### 🧮 Example
+#### Example
 `192.168.254.0/24`
 - `/24` → 24 bits for **network**, 8 bits for **host**
 - This means:
@@ -175,7 +174,7 @@ A more **practical and simplified** model compared to OSI, used in real-world ne
   - Host part → last octet (0–255)
   - **Usable hosts:** 2⁸ - 2 = **254**
 
-> ⚠️ Note: We subtract 2 because one address is reserved for the *network address* and one for the *broadcast address*.
+> Note: We subtract 2 because one address is reserved for the *network address* and one for the *broadcast address*.
 
 ---
 
@@ -229,14 +228,14 @@ To check if two IPs are in the same network:
 | A | 192.168.10.5 | 255.255.255.0 | 192.168.10.0 |
 | B | 192.168.10.200 | 255.255.255.0 | 192.168.10.0 |
 
-✅ Same network → communicate directly.
+Same network → communicate directly.
 
 | Device | IP | Subnet Mask | Network Address |
 |---------|----|-------------|----------------|
 | A | 192.168.10.5 | 255.255.255.0 | 192.168.10.0 |
 | B | 192.168.11.5 | 255.255.255.0 | 192.168.11.0 |
 
-❌ Different networks → communication must go through a **router (gateway)**.
+Different networks → communication must go through a **router (gateway)**.
 
 ---
 
@@ -259,7 +258,7 @@ To check if two IPs are in the same network:
 
 ---
 
-# 🧾 IP Packet, ICMP & ARP
+# IP Packet, ICMP & ARP
 
 ## IP Packet (IPv4)
 - IP packet = **Header** + **Data**.
@@ -303,95 +302,95 @@ To check if two IPs are in the same network:
 ## The Journey of an IP Packet
 ![WhatsApp Image 2025-10-18 at 5 38 38 PM](https://github.com/user-attachments/assets/efd36a28-3f70-45d5-bd05-1da3dfaad65b)
 
-## 🖥️ Case 1: Host A → Host B (Same Subnet)
+## Case 1: Host A → Host B (Same Subnet)
 
-### 1️⃣ Subnet Check
+### 1️. Subnet Check
 - A: 10.0.0.2  
 - B: 10.0.0.4  
 Both are in `10.0.0.0/24` → same subnet ✅  
 No router needed.
 
-### 2️⃣ ARP Resolution
+### 2️. ARP Resolution
 - A checks ARP cache for 10.0.0.4.
 - If not found, sends ARP **broadcast**:  
   “Who has 10.0.0.4? Tell 10.0.0.2.”
 - Switch **floods** the ARP request to all ports.
 
-### 3️⃣ Response
+### 3️. Response
 - B replies with **unicast ARP reply** to A containing its MAC.
 
-### 4️⃣ Communication
+### 4️. Communication
 - A updates ARP table (10.0.0.4 → MAC_B).
 - A sends Ethernet frames **directly to B’s MAC**.
 - Switch forwards frames only to B’s port.
 
 ---
 
-## 🌐 Case 2: Host D → Host X (Different Subnets)
+## Case 2: Host D → Host X (Different Subnets)
 
-### 1️⃣ Subnet Check
+### 1️. Subnet Check
 - D: 10.0.0.3 (10.0.0.0/24)
 - X: 192.168.1.2 (192.168.1.0/24)
 → Different subnets ❌  
 Packet must go to **default gateway (10.0.0.100)**.
 
-### 2️⃣ ARP Resolution (D → Router)
+### 2️. ARP Resolution (D → Router)
 - D checks ARP cache for 10.0.0.100.
 - If not found → sends ARP **broadcast**.
 - Router replies with its **MAC**.
 
-### 3️⃣ Sending Packet to Router
+### 3️. Sending Packet to Router
 - D sends Ethernet frame:
   - **Dest MAC:** Router’s MAC  
   - **Dest IP:** 192.168.1.2 (unchanged)
 
-### 4️⃣ Router Processing
+### 4️. Router Processing
 - Router receives packet → checks routing table.
 - Sees 192.168.1.2 is on directly connected network 192.168.1.0/24.
 
-### 5️⃣ ARP Resolution (Router → X)
+### 5️. ARP Resolution (Router → X)
 - If Router doesn’t know X’s MAC → sends ARP broadcast on that interface.
 - X replies with its MAC → Router caches it.
 
-### 6️⃣ Delivery
+### 6️. Delivery
 - Router forwards packet to X directly via unicast.
 
 ---
 
-## ☁️ Case 3: Host B → Host G (Internet)
+## Case 3: Host B → Host G (Internet)
 
-### 1️⃣ Subnet Check
+### 1️. Subnet Check
 - B: 10.0.0.4  
 - G: 8.8.8.8  
 → Different networks ❌  
 B must send to default gateway (Router 10.0.0.100).
 
-### 2️⃣ ARP Resolution (B → Router)
+### 2️. ARP Resolution (B → Router)
 - B checks for 10.0.0.100 in ARP cache.
 - If not present → sends ARP **broadcast**.
 - Router replies with its **MAC address**.
 
-### 3️⃣ Packet Forwarding to Router
+### 3️. Packet Forwarding to Router
 - B sends frame to Router’s MAC with IP dest = 8.8.8.8.
 
-### 4️⃣ Router’s Role
+### 4️. Router’s Role
 - Router checks routing table.
 - Forwards to Internet interface (Router’s public IP: 1.2.3.4).
 - May perform **NAT** (translating 10.0.0.4 → 1.2.3.4).
 
-### 5️⃣ Internet Communication
+### 5️. Internet Communication
 - Router sends packet to ISP gateway.
 - From there, packet travels through the Internet to 8.8.8.8.
 
-### 6️⃣ Response
+### 6️. Response
 - Response returns to Router’s public IP.
 - Router translates (via NAT) and forwards back to Host B.
 
 ---
 
-# 🧩 UDP (User Datagram Protocol)
+# UDP (User Datagram Protocol)
 
-## 🔹 What is UDP?
+## What is UDP?
 - Layer 4 protocol  
 - Addresses **processes** in a host using **ports**  
 - Simple protocol for sending and receiving data  
@@ -400,7 +399,7 @@ B must send to default gateway (Router 10.0.0.100).
 
 ---
 
-## 🔹 Multiplexing & Demultiplexing
+## Multiplexing & Demultiplexing
 - IP addresses only identify **target hosts**, not specific applications  
 - A host may run **many applications**, each needing its own data 
 - **Ports** are used to identify individual apps or processes  
@@ -414,7 +413,7 @@ B must send to default gateway (Router 10.0.0.100).
 
 ---
 
-## 🔹 UDP Datagram Structure
+## UDP Datagram Structure
 - UDP Datagram = **Header + Data**
 - UDP Header: 
   - Size: **8 bytes** (for IPv4)   
@@ -423,7 +422,7 @@ B must send to default gateway (Router 10.0.0.100).
 
 ---
 
-## 🔹 Limitations
+## Limitations
 - No acknowledgment (no ACKs)
 - No guarantee of delivery  
 - Connection-less - any host can send data without setup  
